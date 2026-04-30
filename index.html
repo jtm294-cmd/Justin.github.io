@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justin | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <style>
+        body {
+            background-image: url('./Assets/Background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #0f172a;
+        }
+        .glass { 
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(20px); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+        .dark .glass { background: rgba(15, 23, 42, 0.85); }
+        
+        .cross-gif {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 500px !important; 
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        .left-cross { left: 5vw; }
+        .right-cross { right: 5vw; }
+
+        @media (max-width: 1024px) {
+            .cross-gif { width: 300px !important; }
+            .left-cross { left: 2vw; }
+            .right-cross { right: 2vw; }
+        }
+
+        /* Styling the Input to look like a Terminal */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    </style>
+</head>
+<body class="text-slate-900 dark:text-slate-100 min-h-screen font-sans overflow-x-hidden">
+
+    <img src="./Assets/Cross.gif" class="cross-gif left-cross" alt="">
+    <img src="./Assets/Cross.gif" class="cross-gif right-cross" alt="">
+
+    <div class="relative z-10">
+        <nav class="max-w-6xl mx-auto p-6 flex justify-between items-center">
+            <span class="font-bold tracking-tighter text-xl uppercase italic bg-black/50 px-4 py-2 rounded-lg backdrop-blur-md">Justin</span>
+            <button onclick="document.documentElement.classList.toggle('dark')" class="p-2 rounded-full glass shadow-xl">
+                <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+                <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+            </button>
+        </nav>
+
+        <main class="max-w-3xl mx-auto p-6">
+            <section class="flex flex-col items-center gap-8 py-12">
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-blue-500 rounded-full blur-2xl opacity-20"></div>
+                    <img src="./Assets/ProfilePic.jpg" alt="Justin" class="relative w-48 h-48 rounded-full border-4 border-blue-500/50 shadow-2xl object-cover">
+                </div>
+                <div class="text-center p-8 rounded-3xl glass shadow-2xl w-full">
+                    <h1 class="text-5xl md:text-6xl font-bold mb-4 tracking-tighter">Hello, I'm Justin.</h1>
+                    <p class="text-xl md:text-2xl text-blue-300 italic font-light">Accountancy Professional & Rutgers Alumnus.</p>
+                </div>
+            </section>
+
+            <div class="mb-6 p-8 rounded-3xl glass border border-blue-500/30 shadow-2xl bg-gradient-to-br from-blue-900/20 to-transparent">
+                <div class="flex items-center gap-3 mb-6">
+                    <i data-lucide="calculator" class="text-blue-400"></i>
+                    <h3 class="text-xl font-bold uppercase tracking-widest text-blue-100">Tax & Net Pay Estimator</h3>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <label class="block text-xs font-bold text-blue-300 uppercase mb-2">Annual Gross Salary ($)</label>
+                        <input 
+                            type="number" 
+                            id="salaryInput" 
+                            placeholder="e.g. 75000" 
+                            oninput="calculateTax()"
+                            class="w-full bg-black/40 border border-blue-500/50 rounded-xl p-4 text-2xl font-bold text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                        >
+                        <p class="mt-4 text-sm text-slate-400">Estimated using 2024 Federal Single Filer brackets + FICA.</p>
+                    </div>
+
+                    <div class="bg-black/20 p-6 rounded-2xl border border-white/5">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-slate-400 text-sm">Monthly Net Pay:</span>
+                            <span id="monthlyNet" class="text-2xl font-bold text-green-400">$0</span>
+                        </div>
+                        <div class="flex justify-between border-t border-white/10 pt-2 mt-2">
+                            <span class="text-slate-400 text-xs">Yearly Taxes (Est):</span>
+                            <span id="yearlyTax" class="text-xs font-bold text-red-400">-$0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="p-8 rounded-3xl glass flex flex-col sm:flex-row gap-8 items-center border border-white/20">
+                    <img src="./Assets/Rutgers.jpg" alt="Rutgers" class="w-24 h-24 rounded-2xl object-contain bg-white p-2">
+                    <div class="text-center sm:text-left">
+                        <span class="text-blue-400 font-bold text-xs uppercase tracking-widest">2024 — 2026</span>
+                        <h3 class="text-3xl font-bold">Rutgers University</h3>
+                        <p class="text-xl opacity-90 italic">Bachelor's in Accountancy</p>
+                    </div>
+                </div>
+
+                <div class="p-8 rounded-3xl glass flex flex-col sm:flex-row gap-8 items-center border border-white/20">
+                    <img src="./Assets/Brookdale.jpg" alt="Brookdale" class="w-24 h-24 rounded-2xl object-contain bg-white p-2">
+                    <div class="text-center sm:text-left">
+                        <span class="text-blue-400 font-bold text-xs uppercase tracking-widest">2022 — 2024</span>
+                        <h3 class="text-3xl font-bold">Brookdale Community College</h3>
+                        <p class="text-xl opacity-90 italic">Associate's in Business Administration</p>
+                    </div>
+                </div>
+
+                <a href="mailto:jtm294@scarletmail.rutgers.edu" class="p-10 rounded-3xl bg-blue-600 hover:bg-blue-500 transition shadow-2xl flex flex-col sm:flex-row justify-between items-center text-center sm:text-left group">
+                    <div>
+                        <h3 class="font-bold text-3xl text-white">Let's Connect</h3>
+                        <p class="text-blue-100 text-lg">jtm294@scarletmail.rutgers.edu</p>
+                    </div>
+                    <span class="font-bold uppercase text-sm tracking-widest flex items-center gap-3 bg-white text-blue-700 px-8 py-4 rounded-full group-hover:scale-105 transition shadow-lg">
+                        Email Me <i data-lucide="mail" class="w-5 h-5"></i>
+                    </span>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        function calculateTax() {
+            const salary = document.getElementById('salaryInput').value;
+            if (!salary || salary <= 0) {
+                document.getElementById('monthlyNet').innerText = "$0";
+                document.getElementById('yearlyTax').innerText = "-$0";
+                return;
+            }
+
+            // Simplified 2024 Federal Tax Brackets (Single)
+            let tax = 0;
+            if (salary > 11600) tax += (Math.min(salary, 47150) - 11600) * 0.12;
+            if (salary > 47150) tax += (Math.min(salary, 100525) - 47150) * 0.22;
+            if (salary > 100525) tax += (salary - 100525) * 0.24;
+            if (salary <= 11600) tax = salary * 0.10;
+
+            // FICA (Social Security 6.2% + Medicare 1.45%)
+            const fica = salary * 0.0765;
+            const totalTax = tax + fica;
+            const netPay = salary - totalTax;
+            const monthlyNet = netPay / 12;
+
+            document.getElementById('monthlyNet').innerText = "$" + monthlyNet.toLocaleString(undefined, {maximumFractionDigits: 0});
+            document.getElementById('yearlyTax').innerText = "-$" + totalTax.toLocaleString(undefined, {maximumFractionDigits: 0});
+        }
+    </script>
+</body>
+</html>
