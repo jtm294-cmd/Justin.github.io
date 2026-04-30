@@ -52,16 +52,13 @@
 
     <main class="max-w-6xl mx-auto p-6">
         <section class="flex flex-col md:flex-row items-center gap-10 py-20">
-<div class="relative bg-slate-200 dark:bg-slate-800 rounded-full w-44 h-44 overflow-hidden">
+<div class="relative bg-slate-200 dark:bg-slate-800 rounded-full w-44 h-44 overflow-hidden shadow-2xl border-4 border-white/10">
+    <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur opacity-30"></div>
     <img 
         src="./Assets/ProfilePic.jpg" 
         alt="Justin" 
-        onerror="this.style.display='none'"
-        class="relative w-full h-full object-cover border-4 border-white/10 shadow-2xl"
+        class="relative w-full h-full object-cover"
     >
-    <div class="absolute inset-0 flex items-center justify-center font-bold opacity-20">
-        JP
-    </div>
 </div>
             <div class="text-center md:text-left">
                 <h1 class="text-5xl font-bold mb-4 tracking-tight text-slate-900 dark:text-white">Hello, I'm Justin.</h1>
