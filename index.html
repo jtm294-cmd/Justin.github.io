@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justin | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <style>
+        body {
+            background-image: url('./Assets/Background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #0f172a; /* Fallback color */
+        }
+        .glass { 
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(20px); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+        .dark .glass { background: rgba(15, 23, 42, 0.8); }
+        
+        /* Large Floating GIFs */
+        .side-gif {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            /* Doubled again to 320px */
+            width: 320px; 
+            /* Sit behind the content so they don't block text */
+            z-index: 0;
+            pointer-events: none; 
+            opacity: 0.6;
+        }
+
+        /* Pulling them significantly away from the edges */
+        .gif-left { left: 10%; }
+        .gif-right { right: 10%; }
+
+        /* On mobile, we keep them smaller so they don't drown the screen */
+        @media (max-width: 768px) {
+            .side-gif { width: 180px; opacity: 0.4; }
+            .gif-left { left: 5%; }
+            .gif-right { right: 5%; }
+        }
+    </style>
+</head>
+<body class="text-slate-900 dark:text-slate-100 min-h-screen font-sans overflow-x-hidden">
+
+    <img src="./Assets/Cross.gif" alt="" class="side-gif gif-left">
+    <img src="./Assets/Cross.gif" alt="" class="side-gif gif-right">
+
+    <div class="relative z-10">
+        <nav class="max-w-6xl mx-auto p-6 flex justify-between items-center">
+            <span class="font-bold tracking-tighter text-xl uppercase italic bg-black/40 px-4 py-2 rounded-lg backdrop-blur-sm shadow-xl">Justin</span>
+            <button onclick="document.documentElement.classList.toggle('dark')" class="p-2 rounded-full glass shadow-xl">
+                <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+                <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+            </button>
+        </nav>
+
+        <main class="max-w-4xl mx-auto p-6">
+            <section class="flex flex-col items-center gap-8 py-12">
+                <div class="relative group">
+                    <div class="absolute -inset-2 bg-blue-500 rounded-full blur opacity-20 group-hover:opacity-40 transition"></div>
+                    <div class="relative w-48 h-48 rounded-full overflow-hidden border-4 border-blue-500/40 shadow-2xl bg-slate-800">
+                        <img src="./Assets/ProfilePic.jpg" alt="Justin Portrait" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="text-center p-8 rounded-3xl backdrop-blur-xl bg-black/30 border border-white/10 shadow-2xl">
+                    <h1 class="text-5xl md:text-6xl font-bold mb-4 tracking-tight">Hello, I'm Justin.</h1>
+                    <p class="text-xl md:text-2xl text-blue-200 italic font-light">
+                        Accountancy Professional & Rutgers Alumnus.
+                    </p>
+                </div>
+            </section>
+
+            <div class="grid grid-cols-1 gap-6">
+                
+                <div class="p-8 rounded-3xl glass flex flex-col sm:flex-row gap-8 items-center hover:bg-white/10 transition shadow-xl border border-white/20">
+                    <img src="./Assets/Rutgers.jpg" alt="Rutgers" class="w-24 h-24 rounded-2xl object-contain bg-white p-2 shadow-lg">
+                    <div class="text-center sm:text-left">
+                        <span class="text-blue-400 font-bold text-xs uppercase tracking-[0.2em]">2024 — 2026</span>
+                        <h3 class="text-3xl font-bold mt-2">Rutgers University</h3>
+                        <p class="text-xl opacity-90">Bachelor's in Accountancy</p>
+                    </div>
+                </div>
+
+                <div class="p-8 rounded-3xl glass flex flex-col sm:flex-row gap-8 items-center hover:bg-white/10 transition shadow-xl border border-white/20">
+                    <img src="./Assets/Brookdale.jpg" alt="Brookdale" class="w-24 h-24 rounded-2xl object-contain bg-white p-2 shadow-lg">
+                    <div class="text-center sm:text-left">
+                        <span class="text-blue-400 font-bold text-xs uppercase tracking-[0.2em]">2022 — 2024</span>
+                        <h3 class="text-3xl font-bold mt-2">Brookdale Community College</h3>
+                        <p class="text-xl opacity-90">Associate's in Business Administration</p>
+                    </div>
+                </div>
+
+                <a href="mailto:jtm294@scarletmail.rutgers.edu" class="p-10 rounded-3xl bg-blue-600 hover:bg-blue-500 transition shadow-2xl flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-6 group">
+                    <div>
+                        <h3 class="font-bold text-3xl text-white">Let's Connect</h3>
+                        <p class="text-blue-100 text-lg opacity-80">jtm294@scarletmail.rutgers.edu</p>
+                    </div>
+                    <span class="font-bold uppercase text-sm tracking-widest flex items-center gap-3 bg-white text-blue-700 px-8 py-4 rounded-full group-hover:scale-105 transition shadow-lg">
+                        Email Me <i data-lucide="mail" class="w-5 h-5"></i>
+                    </span>
+                </a>
+            </div>
+        </main>
+
+        <footer class="p-12 text-center text-sm text-white/40 italic">
+            © 2026 Justin • Rutgers Accountancy
+        </footer>
+    </div>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
