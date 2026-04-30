@@ -91,4 +91,105 @@
                             <label class="block text-[10px] font-bold text-blue-400 uppercase mb-2">Location</label>
                             <select id="stateSelect" onchange="calculateTax()" class="w-full bg-black/60 border border-blue-500/50 rounded-xl p-4 text-lg font-bold text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition cursor-pointer">
                                 <option value="none">No State Tax</option>
-                                <option value="NJ" selected
+                                <option value="NJ" selected>New Jersey</option>
+                                <option value="NY">New York</option>
+                                <option value="PA">Pennsylvania</option>
+                                <option value="CT">Connecticut</option>
+                                <option value="MA">Massachusetts</option>
+                                <option value="CA">California</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="bg-black/40 p-6 rounded-2xl border border-white/10 flex flex-col justify-center space-y-3">
+                        <div class="flex justify-between items-end border-b border-white/10 pb-3">
+                            <span class="text-slate-400 text-[10px] font-bold">EST. MONTHLY NET:</span>
+                            <span id="monthlyNet" class="text-4xl font-bold text-green-400 tracking-tighter">$0</span>
+                        </div>
+                        <div class="space-y-2 pt-2">
+                            <div class="flex justify-between text-[10px] text-slate-400">
+                                <span>Federal Tax (2026):</span>
+                                <span id="fedTaxDisplay" class="text-red-400">-$0</span>
+                            </div>
+                            <div class="flex justify-between text-[10px] text-slate-400">
+                                <span>FICA (SS + MED):</span>
+                                <span id="ficaDisplay" class="text-red-400">-$0</span>
+                            </div>
+                            <div class="flex justify-between text-[10px] text-slate-400">
+                                <span>State Income Tax:</span>
+                                <span id="stateTaxDisplay" class="text-red-400">-$0</span>
+                            </div>
+                            <div class="flex justify-between text-[11px] font-bold text-red-500 border-t border-white/10 pt-2">
+                                <span>TOTAL TAX:</span>
+                                <span id="totalTaxDisplay">-$0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-8 rounded-3xl glass flex flex-col sm:flex-row gap-8 items-center border border-white/10 hover:border-blue-500/50 transition-colors shadow-lg">
+                <img src="./Assets/Rutgers.jpg" alt="Rutgers" class="w-20 h-20 rounded-xl object-contain bg-white p-2">
+                <div class="text-center sm:text-left">
+                    <span class="text-blue-400 font-bold text-xs uppercase">2024 — 2026</span>
+                    <h3 class="text-2xl font-bold">Rutgers University</h3>
+                    <p class="text-lg opacity-80 italic">Bachelor's in Accountancy</p>
+                </div>
+            </div>
+
+            <div class="p-8 rounded-3xl glass flex flex-col sm:flex-row gap-8 items-center border border-white/10 hover:border-blue-500/50 transition-colors shadow-lg">
+                <img src="./Assets/Brookdale.jpg" alt="Brookdale" class="w-20 h-20 rounded-xl object-contain bg-white p-2">
+                <div class="text-center sm:text-left">
+                    <span class="text-blue-400 font-bold text-xs uppercase">2022 — 2024</span>
+                    <h3 class="text-2xl font-bold">Brookdale Community College</h3>
+                    <p class="text-lg opacity-80 italic">Associate's in Business Administration</p>
+                </div>
+            </div>
+
+        </main>
+        
+        <footer class="p-16 text-center text-[10px] text-white/30 uppercase tracking-[6px]">
+            Justin // Rutgers Accountancy // 2026
+        </footer>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        function calculateTax() {
+            const salary = parseFloat(document.getElementById('salaryInput').value) || 0;
+            const state = document.getElementById('stateSelect').value;
+            
+            if (salary <= 0) {
+                updateUI(0, 0, 0, 0);
+                return;
+            }
+
+            // 2026 Estimated Federal Brackets
+            let fedTax = 0;
+            if (salary > 12400) fedTax += (Math.min(salary, 50400) - 12400) * 0.15;
+            if (salary > 50400) fedTax += (Math.min(salary, 105700) - 50400) * 0.25;
+            if (salary > 105700) fedTax += (Math.min(salary, 201775) - 105700) * 0.28;
+            if (salary > 201775) fedTax += (salary - 201775) * 0.33;
+
+            const fica = salary * 0.0765;
+            const stateRates = { 'NJ': 0.055, 'NY': 0.065, 'PA': 0.0307, 'CT': 0.06, 'MA': 0.05, 'CA': 0.09, 'none': 0 };
+            const stateTax = salary * (stateRates[state] || 0);
+
+            const totalTax = fedTax + fica + stateTax;
+            const monthlyNet = (salary - totalTax) / 12;
+
+            updateUI(monthlyNet, fedTax, fica, stateTax);
+        }
+
+        function updateUI(net, fed, fica, state) {
+            const total = fed + fica + state;
+            document.getElementById('monthlyNet').innerText = "$" + Math.round(net).toLocaleString();
+            document.getElementById('fedTaxDisplay').innerText = "-$" + Math.round(fed).toLocaleString();
+            document.getElementById('ficaDisplay').innerText = "-$" + Math.round(fica).toLocaleString();
+            document.getElementById('stateTaxDisplay').innerText = "-$" + Math.round(state).toLocaleString();
+            document.getElementById('totalTaxDisplay').innerText = "-$" + Math.round(total).toLocaleString();
+        }
+    </script>
+</body>
+</html>
