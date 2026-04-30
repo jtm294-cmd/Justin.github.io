@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justin | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <style>
+        body {
+            /* Background Image Setup */
+            background-image: url('./Assets/Background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            transition: background-color 0.3s ease;
+        }
+        .glass { 
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(16px); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+        .dark .glass { background: rgba(15, 23, 42, 0.7); }
+        
+        /* Floating GIF Styles */
+        .side-gif {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 80px; /* Adjust size as needed */
+            z-index: 50;
+            pointer-events: none; /* Prevents GIFs from blocking clicks */
+        }
+    </style>
+</head>
+<body class="text-slate-900 dark:text-slate-100 min-h-screen font-sans">
+
+    <img src="./Assets/Cross.gif" alt="" class="side-gif left-4 hidden md:block">
+    <img src="./Assets/Cross.gif" alt="" class="side-gif right-4 hidden md:block">
+
+    <nav class="max-w-6xl mx-auto p-6 flex justify-between items-center relative z-10">
+        <span class="font-bold tracking-tighter text-xl uppercase italic bg-black/20 px-3 py-1 rounded-lg backdrop-blur-sm">Justin</span>
+        <button onclick="document.documentElement.classList.toggle('dark')" class="p-2 rounded-full glass">
+            <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+            <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+        </button>
+    </nav>
+
+    <main class="max-w-6xl mx-auto p-6 relative z-10">
+        <section class="flex flex-col md:flex-row items-center gap-10 py-12">
+            <div class="w-44 h-44 rounded-full overflow-hidden border-4 border-blue-500/40 shadow-2xl bg-slate-800">
+                <img src="./Assets/ProfilePic.jpg" alt="Justin Portrait" class="w-full h-full object-cover">
+            </div>
+            <div class="text-center md:text-left p-6 rounded-3xl backdrop-blur-md bg-white/10 dark:bg-black/20 border border-white/10">
+                <h1 class="text-5xl font-bold mb-4">Hello, I'm Justin.</h1>
+                <p class="text-xl text-slate-200 max-w-xl italic">
+                    Accountancy Professional & Rutgers Alumnus.
+                </p>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            
+            <div class="md:col-span-2 p-8 rounded-3xl glass flex gap-6 items-center hover:scale-[1.02] transition-transform">
+                <img src="./Assets/Rutgers.jpg" alt="Rutgers Logo" class="w-20 h-20 rounded-xl object-contain bg-white p-1">
+                <div>
+                    <span class="text-blue-400 font-bold text-xs uppercase tracking-widest">2024 — 2026</span>
+                    <h3 class="text-2xl font-bold">Rutgers University</h3>
+                    <p class="opacity-90">Bachelor's in Accountancy</p>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 p-8 rounded-3xl glass flex gap-6 items-center hover:scale-[1.02] transition-transform">
+                <img src="./Assets/Brookdale.jpg" alt="Brookdale Logo" class="w-20 h-20 rounded-xl object-contain bg-white p-1">
+                <div>
+                    <span class="text-blue-400 font-bold text-xs uppercase tracking-widest">2022 — 2024</span>
+                    <h3 class="text-2xl font-bold">Brookdale Community College</h3>
+                    <p class="opacity-90">Associate's in Business Administration</p>
+                </div>
+            </div>
+
+            <a href="mailto:jtm294@scarletmail.rutgers.edu" class="md:col-span-4 p-8 rounded-3xl bg-blue-600/90 text-white flex justify-between items-center hover:bg-blue-700 transition backdrop-blur-md">
+                <div>
+                    <h3 class="font-bold text-xl">Let's Connect</h3>
+                    <p class="text-blue-100 text-sm">jtm294@scarletmail.rutgers.edu</p>
+                </div>
+                <span class="font-bold uppercase text-xs tracking-widest flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full">
+                    Email Me <i data-lucide="mail" class="w-4 h-4"></i>
+                </span>
+            </a>
+
+        </div>
+    </main>
+
+    <footer class="max-w-6xl mx-auto p-12 text-center text-sm text-white/60 italic relative z-10">
+        © 2026 Justin • Rutgers Accountancy
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
