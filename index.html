@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         body {
-            /* Using a placeholder - update this with your chosen purple cityscape URL */
+            /* Using the color-corrected purple landscape we developed */
             background-image: url('./Assets/Background.jpg');
             background-size: cover;
             background-position: center;
@@ -19,34 +19,39 @@
             color: white;
             font-family: 'Space Grotesk', sans-serif;
         }
-        h1, h3, .y2k-header {
+
+        h1, h2, h3, .y2k-header {
             font-family: 'Orbitron', sans-serif;
             letter-spacing: 2px;
         }
+
         .glass { 
             background: rgba(15, 23, 42, 0.85); 
             backdrop-filter: blur(20px); 
             border: 1px solid rgba(255, 255, 255, 0.1); 
             box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
         }
-        /* UPDATED CROSS POSITIONS & SIZE */
+
+        /* Resized and repositioned crosses */
         .cross-gif {
             position: fixed;
             top: 50%;
             transform: translateY(-50%);
-            width: 250px !important; /* Shrunk to 50% */
+            width: 250px !important; 
             z-index: 0;
             pointer-events: none;
             opacity: 0.6;
         }
-        .left-cross { left: 2vw; } /* Moved closer to edge */
-        .right-cross { right: 2vw; } /* Moved closer to edge */
+        .left-cross { left: 2vw; }
+        .right-cross { right: 2vw; }
 
         @media (max-width: 1024px) {
             .cross-gif { width: 150px !important; }
             .left-cross { left: 1vw; }
             .right-cross { right: 1vw; }
         }
+
+        /* Input styling for the calculator */
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
     </style>
@@ -57,9 +62,12 @@
     <img src="./Assets/Cross.gif" class="cross-gif right-cross" alt="">
 
     <div class="relative z-10">
-        <nav class="max-w-6xl mx-auto p-6">
+        <nav class="max-w-6xl mx-auto p-6 flex flex-wrap gap-4">
             <a href="mailto:jtm294@scarletmail.rutgers.edu" class="inline-flex items-center gap-2 font-bold tracking-tighter text-[10px] uppercase italic bg-blue-600/80 hover:bg-blue-500 px-4 py-2 rounded-full backdrop-blur-md transition-all border border-blue-400/50 shadow-[0_0_15px_rgba(37,99,235,0.4)]">
                 <i data-lucide="mail" class="w-3 h-3"></i> Let's Connect
+            </a>
+            <a href="https://www.linkedin.com/in/justin-morris-25a2142b6/" target="_blank" class="inline-flex items-center gap-2 font-bold tracking-tighter text-[10px] uppercase italic bg-slate-800/80 hover:bg-slate-700 px-4 py-2 rounded-full backdrop-blur-md transition-all border border-slate-400/30 shadow-lg">
+                <i data-lucide="linkedin" class="w-3 h-3"></i> LinkedIn
             </a>
         </nav>
 
@@ -128,24 +136,41 @@
                 </div>
             </div>
 
-            <div class="p-8 rounded-3xl glass flex flex-col sm:flex-row gap-8 items-center border border-white/10 hover:border-blue-500/50 transition-colors shadow-lg">
-                <img src="./Assets/Rutgers.jpg" alt="Rutgers" class="w-20 h-20 rounded-xl object-contain bg-white p-2">
-                <div class="text-center sm:text-left">
-                    <span class="text-blue-400 font-bold text-xs uppercase">2024 — 2026</span>
-                    <h3 class="text-2xl font-bold">Rutgers University</h3>
-                    <p class="text-lg opacity-80 italic">Bachelor's in Accountancy</p>
+            <div class="space-y-4">
+                <h2 class="text-sm font-bold uppercase tracking-[0.4em] text-blue-400 px-2">Experience</h2>
+                <div class="p-8 rounded-3xl glass border border-white/10 hover:border-blue-500/50 transition-all">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
+                        <h3 class="text-xl font-bold italic">Accounting / Finance Role</h3>
+                        <span class="text-[10px] uppercase font-bold text-slate-400">Date Range</span>
+                    </div>
+                    <ul class="text-sm space-y-2 opacity-80 list-disc list-inside">
+                        <li>Managed financial documentation and internal account audits.</li>
+                        <li>Assisted in preparing state and federal tax return documentation.</li>
+                        <li>Leveraged accounting software to improve data entry efficiency.</li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="p-8 rounded-3xl glass flex flex-col sm:flex-row gap-8 items-center border border-white/10 hover:border-blue-500/50 transition-colors shadow-lg">
-                <img src="./Assets/Brookdale.jpg" alt="Brookdale" class="w-20 h-20 rounded-xl object-contain bg-white p-2">
-                <div class="text-center sm:text-left">
-                    <span class="text-blue-400 font-bold text-xs uppercase">2022 — 2024</span>
-                    <h3 class="text-2xl font-bold">Brookdale Community College</h3>
-                    <p class="text-lg opacity-80 italic">Associate's in Business Administration</p>
+            <div class="space-y-4">
+                <h2 class="text-sm font-bold uppercase tracking-[0.4em] text-blue-400 px-2">Education</h2>
+                <div class="p-8 rounded-3xl glass flex flex-col sm:flex-row gap-8 items-center border border-white/10">
+                    <img src="./Assets/Rutgers.jpg" alt="Rutgers" class="w-16 h-16 rounded-xl object-contain bg-white p-2">
+                    <div class="text-center sm:text-left">
+                        <span class="text-blue-400 font-bold text-xs uppercase">2024 — 2026</span>
+                        <h3 class="text-xl font-bold italic">Rutgers University</h3>
+                        <p class="text-md opacity-80 text-blue-100">B.S. in Accountancy</p>
+                    </div>
+                </div>
+
+                <div class="p-8 rounded-3xl glass flex flex-col sm:flex-row gap-8 items-center border border-white/10">
+                    <img src="./Assets/Brookdale.jpg" alt="Brookdale" class="w-16 h-16 rounded-xl object-contain bg-white p-2">
+                    <div class="text-center sm:text-left">
+                        <span class="text-blue-400 font-bold text-xs uppercase">2022 — 2024</span>
+                        <h3 class="text-xl font-bold italic">Brookdale Community College</h3>
+                        <p class="text-md opacity-80 text-blue-100">A.S. in Business Administration</p>
+                    </div>
                 </div>
             </div>
-
         </main>
         
         <footer class="p-16 text-center text-[10px] text-white/30 uppercase tracking-[6px]">
