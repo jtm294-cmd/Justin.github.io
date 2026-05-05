@@ -20,8 +20,6 @@
             color: white;
             font-family: 'Space Grotesk', sans-serif;
             padding-top: 80px;
-            /* Hide content initially for the animation */
-            opacity: 0;
         }
 
         h1, h2, h3, .y2k-header {
@@ -38,17 +36,7 @@
             box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
         }
 
-        /* Opening Animation Overlay */
-        #loader {
-            position: fixed;
-            inset: 0;
-            background: #0f172a;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
+        /* Fixed Cross Positions */
         .cross-gif {
             position: fixed;
             top: 50%;
@@ -56,7 +44,7 @@
             width: 250px !important; 
             z-index: 0;
             pointer-events: none;
-            opacity: 0.4;
+            opacity: 0; /* Managed by GSAP fade-in only */
         }
         .left-cross { left: 2vw; }
         .right-cross { right: 2vw; }
@@ -80,12 +68,8 @@
 </head>
 <body class="min-h-screen overflow-x-hidden">
 
-    <div id="loader">
-        <div class="text-blue-400 font-bold tracking-[0.5em] uppercase text-xs animate-pulse">Initializing Terminal...</div>
-    </div>
-
-    <img src="./Assets/Cross.gif" class="cross-gif left-cross reveal-item" alt="">
-    <img src="./Assets/Cross.gif" class="cross-gif right-cross reveal-item" alt="">
+    <img src="./Assets/Cross.gif" id="leftCross" class="cross-gif left-cross" alt="">
+    <img src="./Assets/Cross.gif" id="rightCross" class="cross-gif right-cross" alt="">
 
     <header id="main-nav" class="fixed top-0 left-0 w-full z-50 glass border-b border-white/10 opacity-0 -translate-y-full">
         <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
@@ -236,37 +220,33 @@
     <script>
         lucide.createIcons();
 
-        // Opening Animation Sequence
+        // Reveal Animation (No terminal screen)
         window.addEventListener('DOMContentLoaded', () => {
             const tl = gsap.timeline();
 
-            // 1. Show the body
-            gsap.to("body", { opacity: 1, duration: 0.1 });
-
-            // 2. Fade out the loader
-            tl.to("#loader", { 
-                opacity: 0, 
-                duration: 0.8, 
-                delay: 1, 
-                onComplete: () => document.getElementById('loader').style.display = 'none' 
-            });
-
-            // 3. Drop in the nav
+            // 1. Drop in the nav
             tl.to("#main-nav", { 
                 opacity: 1, 
                 y: 0, 
                 duration: 0.8, 
                 ease: "power4.out" 
+            });
+
+            // 2. Fade in the crosses (Opacity ONLY, no translation)
+            tl.to(".cross-gif", {
+                opacity: 0.4,
+                duration: 1.5,
+                ease: "power1.inOut"
             }, "-=0.4");
 
-            // 4. Staggered reveal of sections
+            // 3. Staggered reveal of sections
             tl.to(".reveal-item", { 
                 opacity: 1, 
                 y: 0, 
                 duration: 1, 
                 stagger: 0.2, 
                 ease: "power3.out" 
-            }, "-=0.6");
+            }, "-=1.2");
         });
 
         function calculateTax() {
