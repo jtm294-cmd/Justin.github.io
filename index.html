@@ -59,12 +59,12 @@
     <img src="./Assets/Cross.gif" class="cross-gif right-cross" alt="">
 
     <div class="relative z-10">
-        <nav class="max-w-6xl mx-auto p-6 flex flex-wrap gap-4">
+        <nav class="w-full p-6 flex flex-wrap gap-4 justify-start">
             <a href="mailto:jtm294@scarletmail.rutgers.edu" class="inline-flex items-center gap-2 font-bold tracking-tighter text-[10px] uppercase italic bg-blue-600/80 hover:bg-blue-500 px-4 py-2 rounded-full backdrop-blur-md transition-all border border-blue-400/50 shadow-[0_0_15px_rgba(37,99,235,0.4)]">
                 <i data-lucide="mail" class="w-3 h-3"></i> Let's Connect
             </a>
             <a href="https://www.linkedin.com/in/justin-morris-25a2142b6/" target="_blank" class="inline-flex items-center gap-2 font-bold tracking-tighter text-[10px] uppercase italic bg-slate-800/80 hover:bg-slate-700 px-4 py-2 rounded-full backdrop-blur-md transition-all border border-slate-400/30 shadow-lg">
-                <i data-lucide="linkedin" class="w-3 h-3"></i> LinkedIn
+                <img src="./Assets/LinkedIn.jpg" alt="" class="w-3 h-3 rounded-sm"> LinkedIn
             </a>
             <a href="./Assets/Justin Resume 2026.pdf" download class="inline-flex items-center gap-2 font-bold tracking-tighter text-[10px] uppercase italic bg-emerald-700/80 hover:bg-emerald-600 px-4 py-2 rounded-full backdrop-blur-md transition-all border border-emerald-400/30 shadow-lg">
                 <i data-lucide="download" class="w-3 h-3"></i> Resume
@@ -92,7 +92,7 @@
                     <div class="space-y-4">
                         <div>
                             <label class="block text-[10px] font-bold text-blue-400 uppercase mb-2">Gross Salary ($)</label>
-                            <input type="number" id="salaryInput" placeholder="Enter Amount" oninput="calculateTax()" class="w-full bg-black/60 border border-blue-500/50 rounded-xl p-4 text-2xl font-bold text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                            <input type="number" id="salaryInput" placeholder="0.00" oninput="calculateTax()" class="w-full bg-black/60 border border-blue-500/50 rounded-xl p-4 text-2xl font-bold text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
                         </div>
                         <div>
                             <label class="block text-[10px] font-bold text-blue-400 uppercase mb-2">Location</label>
@@ -112,10 +112,10 @@
                             <span class="text-slate-400 text-[10px] font-bold">EST. MONTHLY NET:</span>
                             <span id="monthlyNet" class="text-4xl font-bold text-green-400 tracking-tighter">$0</span>
                         </div>
-                        <div class="space-y-2 pt-2">
-                            <div class="flex justify-between text-[10px] text-slate-400"><span>Federal Tax:</span><span id="fedTaxDisplay" class="text-red-400">-$0</span></div>
-                            <div class="flex justify-between text-[10px] text-slate-400"><span>FICA:</span><span id="ficaDisplay" class="text-red-400">-$0</span></div>
-                            <div class="flex justify-between text-[10px] text-slate-400"><span>State Tax:</span><span id="stateTaxDisplay" class="text-red-400">-$0</span></div>
+                        <div class="space-y-2 pt-2 text-[10px] text-slate-400">
+                            <div class="flex justify-between"><span>Federal Tax:</span><span id="fedTaxDisplay" class="text-red-400">-$0</span></div>
+                            <div class="flex justify-between"><span>FICA:</span><span id="ficaDisplay" class="text-red-400">-$0</span></div>
+                            <div class="flex justify-between"><span>State Tax:</span><span id="stateTaxDisplay" class="text-red-400">-$0</span></div>
                             <div class="flex justify-between text-[11px] font-bold text-red-500 border-t border-white/10 pt-2"><span>TOTAL TAX:</span><span id="totalTaxDisplay">-$0</span></div>
                         </div>
                     </div>
