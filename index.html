@@ -6,6 +6,7 @@
     <title>Justin | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         html { scroll-behavior: smooth; }
@@ -19,6 +20,8 @@
             color: white;
             font-family: 'Space Grotesk', sans-serif;
             padding-top: 80px;
+            /* Hide content initially for the animation */
+            opacity: 0;
         }
 
         h1, h2, h3, .y2k-header {
@@ -26,7 +29,6 @@
             letter-spacing: 2px;
         }
 
-        /* Fix for titles being cutoff by sticky nav */
         section { scroll-margin-top: 100px; }
 
         .glass { 
@@ -34,6 +36,17 @@
             backdrop-filter: blur(20px); 
             border: 1px solid rgba(255, 255, 255, 0.1); 
             box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
+        }
+
+        /* Opening Animation Overlay */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #0f172a;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .cross-gif {
@@ -61,19 +74,20 @@
             .cross-gif { width: 120px !important; }
         }
 
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-        
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="min-h-screen overflow-x-hidden">
 
-    <img src="./Assets/Cross.gif" class="cross-gif left-cross" alt="">
-    <img src="./Assets/Cross.gif" class="cross-gif right-cross" alt="">
+    <div id="loader">
+        <div class="text-blue-400 font-bold tracking-[0.5em] uppercase text-xs animate-pulse">Initializing Terminal...</div>
+    </div>
 
-    <header class="fixed top-0 left-0 w-full z-50 glass border-b border-white/10">
+    <img src="./Assets/Cross.gif" class="cross-gif left-cross reveal-item" alt="">
+    <img src="./Assets/Cross.gif" class="cross-gif right-cross reveal-item" alt="">
+
+    <header id="main-nav" class="fixed top-0 left-0 w-full z-50 glass border-b border-white/10 opacity-0 -translate-y-full">
         <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
             <div class="flex gap-4 items-center">
                 <a href="mailto:jtm294@scarletmail.rutgers.edu" title="Email"><i data-lucide="mail" class="w-4 h-4 text-blue-400"></i></a>
@@ -93,7 +107,7 @@
 
     <main class="relative z-10 max-w-3xl mx-auto p-6 space-y-6">
         
-        <section id="about" class="pt-4">
+        <section id="about" class="pt-4 reveal-item opacity-0 translate-y-10">
             <div class="flex flex-col items-center gap-6">
                 <div class="relative">
                     <div class="absolute -inset-4 bg-blue-500 rounded-full blur-2xl opacity-20"></div>
@@ -109,7 +123,7 @@
             </div>
         </section>
 
-        <section id="experience" class="space-y-4">
+        <section id="experience" class="space-y-4 reveal-item opacity-0 translate-y-10">
             <h2 class="text-xs font-bold uppercase tracking-[0.4em] text-blue-400 px-2">Experience</h2>
             <div class="p-6 rounded-3xl glass flex flex-col sm:flex-row gap-6 items-center border border-white/10 hover:border-blue-500/50 transition-all">
                 <img src="./Assets/Goodman.png" alt="Goodman" class="w-16 h-16 rounded-xl object-contain bg-white p-2">
@@ -123,7 +137,7 @@
             </div>
         </section>
 
-        <section id="education" class="space-y-4">
+        <section id="education" class="space-y-4 reveal-item opacity-0 translate-y-10">
             <h2 class="text-xs font-bold uppercase tracking-[0.4em] text-blue-400 px-2">Education</h2>
             <div class="p-6 rounded-3xl glass flex flex-col sm:flex-row gap-6 items-center border border-white/10">
                 <img src="./Assets/Rutgers.jpg" alt="Rutgers" class="w-16 h-16 rounded-xl object-contain bg-white p-2">
@@ -148,7 +162,7 @@
             </div>
         </section>
 
-        <section id="skills" class="space-y-4">
+        <section id="skills" class="space-y-4 reveal-item opacity-0 translate-y-10">
             <h2 class="text-xs font-bold uppercase tracking-[0.4em] text-blue-400 px-2">Skills</h2>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                 <div class="p-4 rounded-2xl glass border border-white/5 text-center">
@@ -172,7 +186,7 @@
             </div>
         </section>
 
-        <section id="calculator" class="space-y-4">
+        <section id="calculator" class="space-y-4 reveal-item opacity-0 translate-y-10">
             <h2 class="text-xs font-bold uppercase tracking-[0.4em] text-blue-400 px-2">Tax Estimator</h2>
             <div class="p-8 rounded-3xl glass border border-blue-500/30 shadow-2xl bg-gradient-to-br from-blue-900/30 to-transparent">
                 <div class="flex items-center gap-3 mb-6">
@@ -214,13 +228,47 @@
             </div>
         </section>
 
-        <footer class="p-16 text-center text-[10px] text-white/30 uppercase tracking-[6px]">
+        <footer class="p-16 text-center text-[10px] text-white/30 uppercase tracking-[6px] reveal-item opacity-0">
             Justin Morris // Rutgers Business School // 2026
         </footer>
     </main>
 
     <script>
         lucide.createIcons();
+
+        // Opening Animation Sequence
+        window.addEventListener('DOMContentLoaded', () => {
+            const tl = gsap.timeline();
+
+            // 1. Show the body
+            gsap.to("body", { opacity: 1, duration: 0.1 });
+
+            // 2. Fade out the loader
+            tl.to("#loader", { 
+                opacity: 0, 
+                duration: 0.8, 
+                delay: 1, 
+                onComplete: () => document.getElementById('loader').style.display = 'none' 
+            });
+
+            // 3. Drop in the nav
+            tl.to("#main-nav", { 
+                opacity: 1, 
+                y: 0, 
+                duration: 0.8, 
+                ease: "power4.out" 
+            }, "-=0.4");
+
+            // 4. Staggered reveal of sections
+            tl.to(".reveal-item", { 
+                opacity: 1, 
+                y: 0, 
+                duration: 1, 
+                stagger: 0.2, 
+                ease: "power3.out" 
+            }, "-=0.6");
+        });
+
         function calculateTax() {
             const salary = parseFloat(document.getElementById('salaryInput').value) || 0;
             const state = document.getElementById('stateSelect').value;
@@ -237,6 +285,7 @@
             const monthlyNet = (salary - totalTax) / 12;
             updateUI(monthlyNet, fedTax, fica, stateTax);
         }
+
         function updateUI(net, fed, fica, state) {
             const total = fed + fica + state;
             document.getElementById('monthlyNet').innerText = "$" + Math.round(net).toLocaleString();
